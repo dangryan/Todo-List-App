@@ -11,48 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="dangryan.tasker.MainActivity">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <Button
-            android:text="Personal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/allButton"
-            android:layout_toEndOf="@+id/allButton"
-            android:id="@+id/personalButton"
-            android:layout_weight="1"
-            android:textSize="12sp"/>
-
-        <Button
-            android:text="Classes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/classesButton"
-            android:layout_toEndOf="@+id/classesButton"
-            android:id="@+id/classesButton"
-            android:layout_weight="1"
-            android:textSize="12sp"/>
-
-        <Button
-            android:text="+"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/classesButton"
-            android:layout_toEndOf="@+id/classesButton"
-            android:id="@+id/addCategoryButton"
-            android:layout_weight="1"
-            android:textSize="12sp"/>
-    </LinearLayout>
-
     <TextView
         android:text="All"
         android:layout_width="wrap_content"
@@ -61,7 +19,8 @@
         android:textAlignment="center"
         android:textSize="20sp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/background_dark"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -247,6 +206,52 @@
         style="@style/Widget.AppCompat.Button.Small"
         android:layout_below="@+id/scrollView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="24dp"
+        android:onClick="onNewTaskButtonClick"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:text="Personal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/allButton"
+            android:layout_toEndOf="@+id/allButton"
+            android:id="@+id/personalButton"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:onClick="onPersonalButtonClick"/>
+
+        <Button
+            android:text="Classes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/classesButton"
+            android:layout_toEndOf="@+id/classesButton"
+            android:id="@+id/classesButton"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:onClick="onClassesButtonClick"/>
+
+        <Button
+            android:text="+"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/classesButton"
+            android:layout_toEndOf="@+id/classesButton"
+            android:id="@+id/addCategoryButton"
+            android:layout_weight="1"
+            android:textSize="12sp"
+            android:onClick="onNewCategoryButtonClick"/>
+    </LinearLayout>
 
 </RelativeLayout>

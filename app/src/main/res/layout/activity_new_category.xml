@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <TextView
+        android:text="New Category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:id="@+id/pageTitle"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:text="Name:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textColor="@android:color/background_dark"
+        android:layout_alignBaseline="@+id/editText"
+        android:layout_alignBottom="@+id/editText"
+        android:layout_toLeftOf="@+id/pageTitle"
+        android:layout_toStartOf="@+id/pageTitle"
+        android:layout_marginRight="29dp"
+        android:layout_marginEnd="29dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text|textPersonName"
+        android:ems="10"
+        android:layout_marginTop="41dp"
+        android:id="@+id/editText"
+        android:layout_below="@+id/pageTitle"
+        android:layout_alignLeft="@+id/pageTitle"
+        android:layout_alignStart="@+id/pageTitle"
+        android:hint="Name"/>
+
+    <Button
+        android:text="Save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:id="@+id/buttonSave"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>
