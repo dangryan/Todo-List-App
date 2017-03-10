@@ -24,6 +24,9 @@
 
         <activity android:name="activity_new_category"/>
 
+        <activity android:name=".activity_edit_task"/>
+
+
     </application>
 
 </manifest>

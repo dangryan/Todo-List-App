@@ -1,6 +1,7 @@
 package dangryan.tasker;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +14,7 @@ import dangryan.tasker.db.TaskContract;
 import dangryan.tasker.db.TaskDbHelper;
 
 
-public class activity_new_task extends AppCompatActivity {
+public class activity_edit_task extends AppCompatActivity {
 
     private TaskDbHelper mHelper;
 
@@ -28,18 +29,21 @@ public class activity_new_task extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_task);
+        setContentView(R.layout.activity_edit_task);
 
-        mHelper = new TaskDbHelper(this);
+        //Intent
+
+        //mHelper = new TaskDbHelper(this);
 
 
-        titleEdit = (EditText) findViewById(R.id.editTitle);
-        categoryEdit = (EditText) findViewById(R.id.editCategory);
-        dateEdit = (EditText) findViewById(R.id.editDate);
-        addInfoEdit = (EditText) findViewById(R.id.editAddInfo);
+        titleEdit = (EditText) findViewById(R.id.editTitle_2);
+        categoryEdit = (EditText) findViewById(R.id.editCategory_2);
+        dateEdit = (EditText) findViewById(R.id.editDate_2);
+        addInfoEdit = (EditText) findViewById(R.id.editAddInfo_2);
 
-        mRatingBar = (RatingBar) findViewById(R.id.ratingBar);
+        mRatingBar = (RatingBar) findViewById(R.id.ratingBar_2);
     }
+
 
     public void onSaveButtonClick(View view) {
         SQLiteDatabase db = mHelper.getWritableDatabase();
