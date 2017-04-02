@@ -18,7 +18,9 @@
 
         <activity android:name=".activity_personal"/>
 
-        <activity android:name=".activity_classes"/>
+        <activity android:name=".activity_school"/>
+
+        <activity android:name=".activity_work"/>
 
         <activity android:name=".activity_new_task"/>
 

@@ -2,167 +2,59 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_personal"
+    android:id="@+id/activity_work"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="dangryan.tasker.activity_personal">
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
+    android:paddingTop="@dimen/activity_vertical_margin">
+    <Button
+        android:text="New Task"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/newTaskButton"
+        android:onClick="onNewTaskButtonClick"
+        android:layout_below="@+id/task_todo_list"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"/>
+
+    <ListView
+        android:id="@+id/task_todo_list"
+        android:layout_width="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <Button
-            android:text="All"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/allButton"
-            android:layout_weight="1"
-            android:textSize="12sp"
-            android:onClick="onAllButtonClick"/>
-
-        <Button
-            android:text="Classes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/classesButton"
-            android:layout_toEndOf="@+id/classesButton"
-            android:id="@+id/classesButton"
-            android:layout_weight="1"
-            android:textSize="12sp"
-            android:onClick="onClassesButtonClick"/>
-
-        <Button
-            android:text="+"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/classesButton"
-            android:layout_toEndOf="@+id/classesButton"
-            android:id="@+id/addCategoryButton"
-            android:layout_weight="1"
-            android:textSize="12sp"
-            android:onClick="onNewCategoryButtonClick"/>
-    </LinearLayout>
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="54dp"
+        android:layout_height="250dp"/>
 
     <TextView
-        android:text="Personal"
+        android:text="Personal Tasks:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/pageTitle"
-        android:textAlignment="center"
-        android:textSize="20sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textColor="@android:color/background_dark"/>
+        android:layout_marginTop="15dp"
+        android:id="@+id/pageTitle_Personal"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp"/>
 
     <Button
-        android:text="+"
+        android:text="Switch Categories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/taskAddButton"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:onClick="onNewTaskButtonClick"/>
+        android:layout_marginTop="21dp"
+        android:id="@+id/categoryButton"
+        android:layout_below="@+id/categorySpinner"
+        android:layout_centerHorizontal="true"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <CheckBox
-        android:text="Clean my room"
-        android:layout_width="wrap_content"
+    <Spinner
         android:layout_height="wrap_content"
-        android:id="@+id/task1CheckBox"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="33dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
-        <CheckBox
-            android:text="Meet Maddie for lunch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/task3CheckBox"
-            android:layout_below="@+id/task2CheckBox"
-            android:layout_alignLeft="@+id/task2CheckBox"
-            android:layout_alignStart="@+id/task2CheckBox"/>
-
-        <CheckBox
-            android:text="Go grocery shopping"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/task2CheckBox"
-            android:layout_below="@+id/task1CheckBox"
-            android:layout_alignLeft="@+id/task1CheckBox"
-            android:layout_alignStart="@+id/task1CheckBox"/>
-
-        <CheckBox
-            android:text="Do laundry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/task4CheckBox"
-            android:layout_below="@+id/task3CheckBox"
-            android:layout_alignLeft="@+id/task3CheckBox"
-            android:layout_alignStart="@+id/task3CheckBox"/>
-
-        <TextView
-            android:text="2/18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/task1Date"
-            android:layout_alignBaseline="@+id/task1CheckBox"
-            android:layout_alignBottom="@+id/task1CheckBox"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
-
-        <TextView
-            android:text="2/18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/task2Date"
-            android:layout_alignBaseline="@+id/task2CheckBox"
-            android:layout_alignBottom="@+id/task2CheckBox"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
-
-        <TextView
-            android:text="2/19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/task3Date"
-            android:layout_alignBaseline="@+id/task3CheckBox"
-            android:layout_alignBottom="@+id/task3CheckBox"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
-
-        <TextView
-            android:text="2/19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/task4Date"
-            android:layout_alignBaseline="@+id/task4CheckBox"
-            android:layout_alignBottom="@+id/task4CheckBox"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
-
-    </RelativeLayout>
+        android:id="@+id/categorySpinner"
+        android:layout_marginTop="20dp"
+        android:entries="@array/categoryArray"
+        android:layout_width="200dp"
+        android:layout_below="@+id/newTaskButton"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

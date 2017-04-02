@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import dangryan.tasker.db.TaskContract;
@@ -18,7 +19,7 @@ public class activity_new_task extends AppCompatActivity {
     private TaskDbHelper mHelper;
 
     EditText titleEdit;
-    EditText categoryEdit;
+    Spinner categoryEdit;
     EditText dateEdit;
     EditText addInfoEdit;
 
@@ -34,7 +35,7 @@ public class activity_new_task extends AppCompatActivity {
 
 
         titleEdit = (EditText) findViewById(R.id.editTitle);
-        categoryEdit = (EditText) findViewById(R.id.editCategory);
+        categoryEdit = (Spinner) findViewById(R.id.editCategory);
         dateEdit = (EditText) findViewById(R.id.editDate);
         addInfoEdit = (EditText) findViewById(R.id.editAddInfo);
 
@@ -45,10 +46,9 @@ public class activity_new_task extends AppCompatActivity {
         SQLiteDatabase db = mHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-
         String taskAddInfo = String.valueOf(addInfoEdit.getText());
         String taskDate = String.valueOf(dateEdit.getText());
-        String taskCategory = String.valueOf(categoryEdit.getText());
+        String taskCategory = categoryEdit.getSelectedItem().toString();
         String taskTitle = String.valueOf(titleEdit.getText());
 
         int taskRating = mRatingBar.getNumStars();

@@ -3,8 +3,8 @@ package dangryan.tasker;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,8 +20,8 @@ import dangryan.tasker.db.TaskDbHelper;
 
 import static dangryan.tasker.R.id.taskNameLabel;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
+public class activity_work extends AppCompatActivity {
+    private static final String TAG = "activity_work";
     private TaskDbHelper mHelper;
     private ListView mTaskListView;
     private ArrayAdapter<String> mAdapter;
@@ -29,14 +29,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all);
+        setContentView(R.layout.activity_work);
 
         mHelper = new TaskDbHelper(this);
         mTaskListView = (ListView) findViewById(R.id.task_todo_list);
         SQLiteDatabase db = mHelper.getReadableDatabase();
-        Cursor cursor = db.query(TaskContract.TaskEntry.TABLE,
+
+        Cursor cursor = db.query(
+                TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE},
-                null, null, null, null, null);
+                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= 'Work'",
+                null,
+                null,
+                null,
+                null);
+
+
+
         while (cursor.moveToNext()) {
             int idx = cursor.getColumnIndex(TaskContract.TaskEntry.COL_TASK_TITLE);
             Log.d(TAG, "Task: " + cursor.getString(idx));
@@ -45,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         db.close();
         updateUI();
     }
-
 
     @Override
     protected void onResume(){
@@ -65,9 +73,15 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> taskNameList = new ArrayList<>();
 
         SQLiteDatabase db = mHelper.getReadableDatabase();
-        Cursor cursor = db.query(TaskContract.TaskEntry.TABLE,
-                new String[]{TaskContract.TaskEntry.COL_TASK_TITLE, TaskContract.TaskEntry.COL_TASK_DUE},
-                null, null, null, null, null);
+
+        Cursor cursor = db.query(
+                TaskContract.TaskEntry.TABLE,
+                new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE},
+                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= 'Work'",
+                null,
+                null,
+                null,
+                null);
 
 
         while (cursor.moveToNext()) {
@@ -140,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
         db.close();
 
-        Intent intent = new Intent(MainActivity.this, activity_edit_task.class);
+        Intent intent = new Intent(activity_work.this, activity_edit_task.class);
 
         intent.putExtra("task title", taskTitle);
         intent.putExtra("task due", taskDue);
@@ -163,16 +177,16 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(),"Current page selected", Toast.LENGTH_LONG);
         }
         if (categoryChoice.equals("School")){
-            Intent intent = new Intent(MainActivity.this, activity_school.class);
+            Intent intent = new Intent(activity_work.this, activity_school.class);
             startActivity(intent);
         }
         if (categoryChoice.equals("Work")){
-            Intent intent = new Intent(MainActivity.this, activity_work.class);
+            Intent intent = new Intent(activity_work.this, activity_work.class);
             startActivity(intent);
 
         }
         if (categoryChoice.equals("Personal")){
-            Intent intent = new Intent(MainActivity.this, activity_personal.class);
+            Intent intent = new Intent(activity_work.this, activity_personal.class);
             startActivity(intent);
 
         }

@@ -24,21 +24,6 @@
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/background_dark"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:ems="10"
-        android:id="@+id/editTitle"
-        android:textSize="14sp"
-        android:layout_alignBaseline="@+id/textTitle"
-        android:layout_alignBottom="@+id/textTitle"
-        android:layout_alignLeft="@+id/pageTitle"
-        android:layout_alignStart="@+id/pageTitle"
-        android:layout_marginLeft="13dp"
-        android:layout_marginStart="13dp"
-        android:hint="Title"/>
-
     <TextView
         android:text="Title: *"
         android:layout_width="wrap_content"
@@ -62,19 +47,6 @@
         android:layout_marginTop="17dp"
         android:id="@+id/textCategory"
         android:textColor="@android:color/background_dark"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/editCategory"
-        android:textSize="14sp"
-        android:hint="Category"
-        android:inputType="text"
-        android:layout_alignBaseline="@+id/textCategory"
-        android:layout_alignBottom="@+id/textCategory"
-        android:layout_alignLeft="@+id/editTitle"
-        android:layout_alignStart="@+id/editTitle"/>
 
     <TextView
         android:text="Finish by: *"
@@ -153,5 +125,33 @@
         android:layout_alignRight="@+id/pageTitle"
         android:layout_alignEnd="@+id/pageTitle"
         android:onClick="onSaveButtonClick"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/editTitle"
+        android:textSize="14sp"
+        android:hint="Title"
+        android:layout_alignBaseline="@+id/textTitle"
+        android:layout_alignBottom="@+id/textTitle"
+        android:layout_alignRight="@+id/editAddInfo"
+        android:layout_alignEnd="@+id/editAddInfo"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/editCategory"
+        android:textSize="14sp"
+        android:hint="Category"
+        android:inputType="text"
+        android:layout_alignTop="@+id/textCategory"
+        android:layout_alignRight="@+id/editTitle"
+        android:layout_alignEnd="@+id/editTitle"
+        android:layout_alignLeft="@+id/editTitle"
+        android:layout_alignStart="@+id/editTitle"
+        android:entries="@array/categoryArray"/>
 
 </RelativeLayout>
