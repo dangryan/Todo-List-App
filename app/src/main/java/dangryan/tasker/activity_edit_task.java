@@ -16,7 +16,7 @@ import dangryan.tasker.db.TaskDbHelper;
 
 public class activity_edit_task extends AppCompatActivity {
 
-    private TaskDbHelper mHelper;
+    private TaskDbHelper mHelper = new TaskDbHelper(this);
 
     EditText titleEdit;
     EditText categoryEdit;
@@ -31,10 +31,6 @@ public class activity_edit_task extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
 
-        //Intent
-
-        //mHelper = new TaskDbHelper(this);
-
 
         titleEdit = (EditText) findViewById(R.id.editTitle_2);
         categoryEdit = (EditText) findViewById(R.id.editCategory_2);
@@ -42,6 +38,21 @@ public class activity_edit_task extends AppCompatActivity {
         addInfoEdit = (EditText) findViewById(R.id.editAddInfo_2);
 
         mRatingBar = (RatingBar) findViewById(R.id.ratingBar_2);
+
+
+        Bundle extras = getIntent().getExtras();
+
+        String taskTitle = extras.getString("task title");
+        String taskCategory = extras.getString("task category");
+        String taskDue = extras.getString("task due");
+        //String taskPriority = extras.getString("task priority");
+        String taskNotes = extras.getString("task notes");
+
+
+        titleEdit.setText(taskTitle);
+        categoryEdit.setText(taskCategory);
+        dateEdit.setText(taskDue);
+        addInfoEdit.setText(taskNotes);
     }
 
 
@@ -70,7 +81,7 @@ public class activity_edit_task extends AppCompatActivity {
                 values,
                 SQLiteDatabase.CONFLICT_REPLACE);
         db.close();
-        Toast toast = Toast.makeText(this, "Task Added!", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, "Task updated!", Toast.LENGTH_LONG);
         toast.show();
     }
 }

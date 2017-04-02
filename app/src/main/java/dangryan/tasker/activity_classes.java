@@ -10,7 +10,7 @@ public class activity_classes extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_classes);
+        setContentView(R.layout.activity_school);
     }
 
     //Function to go to the "Personal" page

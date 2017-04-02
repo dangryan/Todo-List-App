@@ -31,13 +31,13 @@
         android:layout_height="250dp"/>
 
     <TextView
-        android:text="All Tasks:"
+        android:text="School Tasks:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:id="@+id/pageTitle_All"
+        android:id="@+id/pageTitle_School"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"/>
 
