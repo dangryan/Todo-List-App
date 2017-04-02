@@ -4,10 +4,12 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import dangryan.tasker.db.TaskContract;
@@ -19,12 +21,14 @@ public class activity_edit_task extends AppCompatActivity {
     private TaskDbHelper mHelper = new TaskDbHelper(this);
 
     EditText titleEdit;
-    EditText categoryEdit;
+    Spinner categorySpinner;
     EditText dateEdit;
     EditText addInfoEdit;
 
-    RatingBar mRatingBar;
-
+    Spinner prioritySpin;
+    Bundle extras;
+    int taskCategoryPos;
+    int taskPriorityPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +36,12 @@ public class activity_edit_task extends AppCompatActivity {
         setContentView(R.layout.activity_edit_task);
 
 
-        titleEdit = (EditText) findViewById(R.id.editTitle_2);
-        categoryEdit = (EditText) findViewById(R.id.editCategory_2);
-        dateEdit = (EditText) findViewById(R.id.editDate_2);
-        addInfoEdit = (EditText) findViewById(R.id.editAddInfo_2);
+        titleEdit = (EditText) findViewById(R.id.editTitle);
+        categorySpinner = (Spinner) findViewById(R.id.editCategory);
+        dateEdit = (EditText) findViewById(R.id.editDate);
+        addInfoEdit = (EditText) findViewById(R.id.editAddInfo);
 
-        mRatingBar = (RatingBar) findViewById(R.id.ratingBar_2);
+        prioritySpin = (Spinner) findViewById(R.id.prioritySpinner);
 
 
         Bundle extras = getIntent().getExtras();
@@ -45,29 +49,58 @@ public class activity_edit_task extends AppCompatActivity {
         String taskTitle = extras.getString("task title");
         String taskCategory = extras.getString("task category");
         String taskDue = extras.getString("task due");
-        //String taskPriority = extras.getString("task priority");
+        String taskPriority = extras.getString("task priority");
         String taskNotes = extras.getString("task notes");
 
 
+
+        if (taskCategory.equals("All")){
+            taskCategoryPos = 0;
+        }
+        if (taskCategory.equals("School")){
+            taskCategoryPos = 1;
+        }
+        if (taskCategory.equals("Work")){
+            taskCategoryPos = 2;
+        }
+        if (taskCategory.equals("Personal")){
+            taskCategoryPos = 3;
+        }
+
+
+
+        if (taskPriority.equals("Low")){
+            taskPriorityPos = 0;
+        }
+        if (taskPriority.equals("Medium")){
+            taskPriorityPos = 1;
+        }
+        if (taskPriority.equals("High")){
+            taskPriorityPos = 2;
+        }
+
+
         titleEdit.setText(taskTitle);
-        categoryEdit.setText(taskCategory);
+        categorySpinner.setSelection(taskCategoryPos);
         dateEdit.setText(taskDue);
         addInfoEdit.setText(taskNotes);
+        prioritySpin.setSelection(taskPriorityPos);
     }
 
 
-    public void onSaveButtonClick(View view) {
+    public void onSaveButtonClickEdit(View view) {
+
+        Bundle extras = getIntent().getExtras();
+        String taskTitleOld = extras.getString("task title");
+
         SQLiteDatabase db = mHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-
         String taskAddInfo = String.valueOf(addInfoEdit.getText());
         String taskDate = String.valueOf(dateEdit.getText());
-        String taskCategory = String.valueOf(categoryEdit.getText());
+        String taskCategory = String.valueOf(categorySpinner.getSelectedItem().toString());
         String taskTitle = String.valueOf(titleEdit.getText());
-
-        int taskRating = mRatingBar.getNumStars();
-
+        String taskRating = prioritySpin.getSelectedItem().toString();
 
         values.put(TaskContract.TaskEntry.COL_TASK_TITLE, taskTitle);
         values.put(TaskContract.TaskEntry.COL_TASK_CATEGORY, taskCategory);
@@ -76,10 +109,16 @@ public class activity_edit_task extends AppCompatActivity {
         values.put(TaskContract.TaskEntry.COL_TASK_PRIORITY, taskRating);
 
 
-        db.insertWithOnConflict(TaskContract.TaskEntry.TABLE,
+        db.update(
+                TaskContract.TaskEntry.TABLE,
+                values,
+                TaskContract.TaskEntry.COL_TASK_TITLE + "= '" + taskTitleOld + "'",
+                null);
+
+        /*db.insertWithOnConflict(TaskContract.TaskEntry.TABLE,
                 null,
                 values,
-                SQLiteDatabase.CONFLICT_REPLACE);
+                SQLiteDatabase.CONFLICT_REPLACE);*/
         db.close();
         Toast toast = Toast.makeText(this, "Task updated!", Toast.LENGTH_LONG);
         toast.show();

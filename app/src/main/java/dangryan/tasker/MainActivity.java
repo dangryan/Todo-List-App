@@ -1,5 +1,6 @@
 package dangryan.tasker;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -34,9 +35,15 @@ public class MainActivity extends AppCompatActivity {
         mHelper = new TaskDbHelper(this);
         mTaskListView = (ListView) findViewById(R.id.task_todo_list);
         SQLiteDatabase db = mHelper.getReadableDatabase();
+
         Cursor cursor = db.query(TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE},
-                null, null, null, null, null);
+                TaskContract.TaskEntry.COL_TASK_DONE + "= 'False'",
+                null,
+                null,
+                null,
+                null);
+
         while (cursor.moveToNext()) {
             int idx = cursor.getColumnIndex(TaskContract.TaskEntry.COL_TASK_TITLE);
             Log.d(TAG, "Task: " + cursor.getString(idx));
@@ -65,9 +72,14 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> taskNameList = new ArrayList<>();
 
         SQLiteDatabase db = mHelper.getReadableDatabase();
-        Cursor cursor = db.query(TaskContract.TaskEntry.TABLE,
+        Cursor cursor = db.query(
+                TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry.COL_TASK_TITLE, TaskContract.TaskEntry.COL_TASK_DUE},
-                null, null, null, null, null);
+                TaskContract.TaskEntry.COL_TASK_DONE + "= 'False'",
+                null,
+                null,
+                null,
+                null);
 
 
         while (cursor.moveToNext()) {
@@ -103,9 +115,14 @@ public class MainActivity extends AppCompatActivity {
         TextView taskTextView = (TextView) parent.findViewById(taskNameLabel);
         String task = taskTextView.getText().toString();
         SQLiteDatabase db = mHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TaskContract.TaskEntry.COL_TASK_DONE, "True");
 
-        db.delete(TaskContract.TaskEntry.TABLE,
-                TaskContract.TaskEntry.COL_TASK_TITLE + " = ?",
+
+        db.update(
+                TaskContract.TaskEntry.TABLE,
+                contentValues,
+                TaskContract.TaskEntry.COL_TASK_TITLE + "= ?",
                 new String[]{task});
 
         db.close();
@@ -122,13 +139,9 @@ public class MainActivity extends AppCompatActivity {
         String table = TaskContract.TaskEntry.TABLE;
         String[] columns = new String[] { "title", "due", "category", "priority", "notes" };
         String selection = TaskContract.TaskEntry.COL_TASK_TITLE+ "= '" + taskName + "'";
-        String[] selectionArgs = null;
-        String groupBy = null;
-        String having = null;
-        String orderBy = null;
-        String limit = null;
 
-        Cursor cursor2 = db.query(table, columns, selection,selectionArgs,groupBy,having,orderBy,limit);
+
+        Cursor cursor2 = db.query(table, columns, selection,null,null,null,null,null);
 
         cursor2.moveToFirst();
 

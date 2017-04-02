@@ -6,4 +6,12 @@
         <item>Work</item>
         <item>Personal</item>
     </string-array>
+
+
+
+    <string-array name="priorityArray">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
 </resources>

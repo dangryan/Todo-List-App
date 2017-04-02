@@ -23,7 +23,7 @@ public class activity_new_task extends AppCompatActivity {
     EditText dateEdit;
     EditText addInfoEdit;
 
-    RatingBar mRatingBar;
+    Spinner prioritySpin;
 
 
     @Override
@@ -39,7 +39,7 @@ public class activity_new_task extends AppCompatActivity {
         dateEdit = (EditText) findViewById(R.id.editDate);
         addInfoEdit = (EditText) findViewById(R.id.editAddInfo);
 
-        mRatingBar = (RatingBar) findViewById(R.id.ratingBar);
+        prioritySpin = (Spinner) findViewById(R.id.prioritySpinner);
     }
 
     public void onSaveButtonClick(View view) {
@@ -51,7 +51,7 @@ public class activity_new_task extends AppCompatActivity {
         String taskCategory = categoryEdit.getSelectedItem().toString();
         String taskTitle = String.valueOf(titleEdit.getText());
 
-        int taskRating = mRatingBar.getNumStars();
+        String taskRating = prioritySpin.getSelectedItem().toString();
 
 
         values.put(TaskContract.TaskEntry.COL_TASK_TITLE, taskTitle);
@@ -59,12 +59,14 @@ public class activity_new_task extends AppCompatActivity {
         values.put(TaskContract.TaskEntry.COL_TASK_DUE, taskDate);
         values.put(TaskContract.TaskEntry.COL_TASK_NOTES, taskAddInfo);
         values.put(TaskContract.TaskEntry.COL_TASK_PRIORITY, taskRating);
+        values.put(TaskContract.TaskEntry.COL_TASK_DONE, "False");
 
 
         db.insertWithOnConflict(TaskContract.TaskEntry.TABLE,
                 null,
                 values,
                 SQLiteDatabase.CONFLICT_REPLACE);
+
         db.close();
         Toast toast = Toast.makeText(this, "Task Added!", Toast.LENGTH_LONG);
         toast.show();

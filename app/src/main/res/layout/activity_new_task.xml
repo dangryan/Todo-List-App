@@ -83,22 +83,11 @@
         android:id="@+id/textPriority"
         android:textColor="@android:color/background_dark"/>
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:numStars="3"
-        android:layout_below="@+id/editDate"
-        android:layout_alignLeft="@+id/editDate"
-        android:layout_alignStart="@+id/editDate"
-        android:stepSize="1"
-        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"/>
-
     <TextView
         android:text="Additional Info:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ratingBar"
+        android:layout_below="@+id/prioritySpinner"
         android:layout_alignLeft="@+id/textPriority"
         android:layout_alignStart="@+id/textPriority"
         android:layout_marginTop="22dp"
@@ -153,5 +142,18 @@
         android:layout_alignLeft="@+id/editTitle"
         android:layout_alignStart="@+id/editTitle"
         android:entries="@array/categoryArray"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/prioritySpinner"
+        android:numStars="3"
+        android:stepSize="1"
+        android:layout_alignBottom="@+id/textPriority"
+        android:layout_alignLeft="@+id/editDate"
+        android:layout_alignStart="@+id/editDate"
+        android:layout_alignRight="@+id/editDate"
+        android:layout_alignEnd="@+id/editDate"
+        android:entries="@array/priorityArray"/>
 
 </RelativeLayout>

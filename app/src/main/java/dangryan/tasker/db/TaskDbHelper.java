@@ -18,9 +18,11 @@ public class TaskDbHelper extends SQLiteOpenHelper {
                 TaskContract.TaskEntry.COL_TASK_CATEGORY + " TEXT NOT NULL, " +
                 TaskContract.TaskEntry.COL_TASK_DUE + " TEXT NOT NULL, " +
                 TaskContract.TaskEntry.COL_TASK_PRIORITY + " TEXT NOT NULL, " +
-                TaskContract.TaskEntry.COL_TASK_NOTES + " TEXT NOT NULL)";
+                TaskContract.TaskEntry.COL_TASK_NOTES + " TEXT NOT NULL," +
+                TaskContract.TaskEntry.COL_TASK_DONE + " TEXT NOT NULL)";
 
-        db.execSQL(createTable);
+
+                db.execSQL(createTable);
     }
 
     @Override

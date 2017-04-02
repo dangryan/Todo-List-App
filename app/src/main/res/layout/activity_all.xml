@@ -60,13 +60,4 @@
         android:layout_below="@+id/newTaskButton"
         android:layout_centerHorizontal="true"/>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/categorySpinner"
-        android:layout_toStartOf="@+id/categorySpinner"
-        android:id="@+id/choiceView"/>
-
 </RelativeLayout>

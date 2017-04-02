@@ -26,7 +26,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="54dp"
-        android:layout_height="250dp"/>
+        android:layout_height="350dp"/>
 
     <TextView
         android:text="School Tasks:"
@@ -38,23 +38,5 @@
         android:id="@+id/pageTitle_School"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"/>
-
-    <Button
-        android:text="Switch Categories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:id="@+id/categoryButton"
-        android:layout_below="@+id/categorySpinner"
-        android:layout_centerHorizontal="true"/>
-
-    <Spinner
-        android:layout_height="wrap_content"
-        android:id="@+id/categorySpinner"
-        android:layout_marginTop="20dp"
-        android:entries="@array/categoryArray"
-        android:layout_width="200dp"
-        android:layout_below="@+id/newTaskButton"
-        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

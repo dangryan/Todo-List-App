@@ -10,7 +10,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
-        android:id="@+id/pageTitle_2"
+        android:id="@+id/pageTitle"
         android:textSize="20sp"
         android:textColor="@android:color/background_dark"/>
 
@@ -19,25 +19,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:id="@+id/textView2_2"
-        android:layout_below="@+id/pageTitle_2"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/pageTitle"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/background_dark"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:ems="10"
-        android:id="@+id/editTitle_2"
-        android:textSize="14sp"
-        android:layout_alignBaseline="@+id/textTitle_2"
-        android:layout_alignBottom="@+id/textTitle_2"
-        android:layout_alignLeft="@+id/pageTitle_2"
-        android:layout_alignStart="@+id/pageTitle_2"
-        android:layout_marginLeft="13dp"
-        android:layout_marginStart="13dp"
-        android:hint="Title"/>
 
     <TextView
         android:text="Title: *"
@@ -46,45 +31,32 @@
         android:layout_marginRight="22dp"
         android:layout_marginEnd="22dp"
         android:layout_marginTop="30dp"
-        android:id="@+id/textTitle_2"
-        android:layout_below="@+id/textView2_2"
-        android:layout_toLeftOf="@+id/textView2_2"
-        android:layout_toStartOf="@+id/textView2_2"
+        android:id="@+id/textTitle"
+        android:layout_below="@+id/textView2"
+        android:layout_toLeftOf="@+id/textView2"
+        android:layout_toStartOf="@+id/textView2"
         android:textColor="@android:color/background_dark"/>
 
     <TextView
         android:text="Category: *"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editTitle_2"
-        android:layout_alignLeft="@+id/textTitle_2"
-        android:layout_alignStart="@+id/textTitle_2"
+        android:layout_below="@+id/editTitle"
+        android:layout_alignLeft="@+id/textTitle"
+        android:layout_alignStart="@+id/textTitle"
         android:layout_marginTop="17dp"
-        android:id="@+id/textCategory_2"
+        android:id="@+id/textCategory"
         android:textColor="@android:color/background_dark"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/editCategory_2"
-        android:textSize="14sp"
-        android:hint="Category"
-        android:inputType="text"
-        android:layout_alignBaseline="@+id/textCategory_2"
-        android:layout_alignBottom="@+id/textCategory_2"
-        android:layout_alignLeft="@+id/editTitle_2"
-        android:layout_alignStart="@+id/editTitle_2"/>
 
     <TextView
         android:text="Finish by: *"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editCategory_2"
-        android:layout_alignLeft="@+id/textCategory_2"
-        android:layout_alignStart="@+id/textCategory_2"
+        android:layout_below="@+id/editCategory"
+        android:layout_alignLeft="@+id/textCategory"
+        android:layout_alignStart="@+id/textCategory"
         android:layout_marginTop="21dp"
-        android:id="@+id/textFinishBy_2"
+        android:id="@+id/textFinishBy"
         android:textColor="@android:color/background_dark"/>
 
     <EditText
@@ -92,68 +64,96 @@
         android:layout_height="wrap_content"
         android:inputType="date"
         android:ems="10"
-        android:id="@+id/editDate_2"
+        android:id="@+id/editDate"
         android:textSize="14sp"
-        android:layout_alignBaseline="@+id/textFinishBy_2"
-        android:layout_alignBottom="@+id/textFinishBy_2"
-        android:layout_alignLeft="@+id/editCategory_2"
-        android:layout_alignStart="@+id/editCategory_2"
+        android:layout_alignBaseline="@+id/textFinishBy"
+        android:layout_alignBottom="@+id/textFinishBy"
+        android:layout_alignLeft="@+id/editCategory"
+        android:layout_alignStart="@+id/editCategory"
         android:hint="Date"/>
 
     <TextView
         android:text="Priority:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editDate_2"
-        android:layout_alignLeft="@+id/textFinishBy_2"
-        android:layout_alignStart="@+id/textFinishBy_2"
+        android:layout_below="@+id/editDate"
+        android:layout_alignLeft="@+id/textFinishBy"
+        android:layout_alignStart="@+id/textFinishBy"
         android:layout_marginTop="18dp"
-        android:id="@+id/textPriority_2"
+        android:id="@+id/textPriority"
         android:textColor="@android:color/background_dark"/>
 
     <TextView
         android:text="Additional Info:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ratingBar_2"
-        android:layout_alignLeft="@+id/textPriority_2"
-        android:layout_alignStart="@+id/textPriority_2"
+        android:layout_below="@+id/prioritySpinner"
+        android:layout_alignLeft="@+id/textPriority"
+        android:layout_alignStart="@+id/textPriority"
         android:layout_marginTop="22dp"
-        android:id="@+id/textAddInfo_2"
+        android:id="@+id/textAddInfo"
         android:textColor="@android:color/background_dark"/>
 
     <EditText
         android:inputType="text"
         android:ems="10"
         android:layout_marginTop="15dp"
-        android:id="@+id/editAddInfo_2"
+        android:id="@+id/editAddInfo"
         android:hint="Additional info"
         android:layout_height="100dp"
         android:layout_width="300dp"
-        android:layout_below="@+id/textAddInfo_2"
+        android:layout_below="@+id/textAddInfo"
         android:layout_centerHorizontal="true"/>
 
     <Button
         android:text="Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonSave_2"
-        android:layout_below="@+id/editAddInfo_2"
-        android:layout_alignRight="@+id/pageTitle_2"
-        android:layout_alignEnd="@+id/pageTitle_2"
-        android:onClick="onSaveButtonClick"/>
+        android:id="@+id/buttonSave"
+        android:layout_below="@+id/editAddInfo"
+        android:layout_alignRight="@+id/pageTitle"
+        android:layout_alignEnd="@+id/pageTitle"
+        android:onClick="onSaveButtonClickEdit"/>
 
-    <RatingBar
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ratingBar_2"
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/editTitle"
+        android:textSize="14sp"
+        android:hint="Title"
+        android:layout_alignBaseline="@+id/textTitle"
+        android:layout_alignBottom="@+id/textTitle"
+        android:layout_alignRight="@+id/editAddInfo"
+        android:layout_alignEnd="@+id/editAddInfo"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/editCategory"
+        android:textSize="14sp"
+        android:hint="Category"
+        android:inputType="text"
+        android:layout_alignTop="@+id/textCategory"
+        android:layout_alignRight="@+id/editTitle"
+        android:layout_alignEnd="@+id/editTitle"
+        android:layout_alignLeft="@+id/editTitle"
+        android:layout_alignStart="@+id/editTitle"
+        android:entries="@array/categoryArray"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/prioritySpinner"
         android:numStars="3"
         android:stepSize="1"
-        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
-        android:layout_below="@+id/editDate_2"
-        android:layout_toRightOf="@+id/textAddInfo_2"
-        android:layout_toEndOf="@+id/textAddInfo_2"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp"/>
+        android:layout_alignBottom="@+id/textPriority"
+        android:layout_alignLeft="@+id/editDate"
+        android:layout_alignStart="@+id/editDate"
+        android:layout_alignRight="@+id/editDate"
+        android:layout_alignEnd="@+id/editDate"
+        android:entries="@array/priorityArray"/>
 
 </RelativeLayout>
