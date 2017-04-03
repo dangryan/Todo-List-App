@@ -141,7 +141,7 @@
         android:layout_alignEnd="@+id/editTitle"
         android:layout_alignLeft="@+id/editTitle"
         android:layout_alignStart="@+id/editTitle"
-        android:entries="@array/categoryArray"/>
+        android:entries="@array/categoryArrayShort"/>
 
     <Spinner
         android:layout_width="wrap_content"

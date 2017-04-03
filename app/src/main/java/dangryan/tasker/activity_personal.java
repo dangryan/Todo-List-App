@@ -38,7 +38,7 @@ public class activity_personal extends AppCompatActivity {
         Cursor cursor = db.query(
                 TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE},
-                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= 'Personal'",
+                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= 'Personal'" + " AND " + TaskContract.TaskEntry.COL_TASK_TITLE + " IS NOT NULL",
                 null,
                 null,
                 null,
@@ -77,7 +77,7 @@ public class activity_personal extends AppCompatActivity {
         Cursor cursor = db.query(
                 TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE},
-                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= 'Personal'",
+                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= 'Personal'" + " AND " + TaskContract.TaskEntry.COL_TASK_TITLE + " IS NOT NULL",
                 null,
                 null,
                 null,
@@ -170,8 +170,6 @@ public class activity_personal extends AppCompatActivity {
     public void switchPage(View view){
         Spinner categoryDropdown = (Spinner)findViewById(R.id.categorySpinner);
         String categoryChoice = categoryDropdown.getSelectedItem().toString();
-        TextView test = (TextView)findViewById(R.id.choiceView);
-        test.setText(categoryChoice);
 
         if (categoryChoice.equals("All")){
             Intent intent = new Intent(activity_personal.this, MainActivity.class);

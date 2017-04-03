@@ -11,16 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="dangryan.tasker.MainActivity">
 
-    <Button
-        android:text="New Task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/newTaskButton"
-        android:onClick="onNewTaskButtonClick"
-        android:layout_below="@+id/task_todo_list"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"/>
-
     <ListView
         android:id="@+id/task_todo_list"
         android:layout_width="wrap_content"
@@ -28,7 +18,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="54dp"
-        android:layout_height="250dp"/>
+        android:layout_height="320dp"/>
 
     <TextView
         android:text="All Tasks:"
@@ -42,22 +32,48 @@
         android:textSize="18sp"/>
 
     <Button
-        android:text="Switch Categories"
+        android:text="Switch Pages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
         android:id="@+id/categoryButton"
-        android:layout_below="@+id/categorySpinner"
-        android:layout_centerHorizontal="true"
-        android:onClick="switchPage"/>
+        android:onClick="switchPage"
+        android:layout_marginBottom="14dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+    <Button
+        android:text="New Task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newTaskButton"
+        android:onClick="onNewTaskButtonClick"
+        android:layout_alignBaseline="@+id/categoryButton"
+        android:layout_alignBottom="@+id/categoryButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <Spinner
         android:layout_height="wrap_content"
         android:id="@+id/categorySpinner"
-        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
         android:entries="@array/categoryArray"
-        android:layout_width="200dp"
-        android:layout_below="@+id/newTaskButton"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginBottom="14dp"
+        android:layout_above="@+id/categoryButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignLeft="@+id/categoryButton"
+        android:layout_alignStart="@+id/categoryButton"/>
+
+    <TextView
+        android:text="Pages:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:textColor="@android:color/background_dark"
+        android:layout_alignBaseline="@+id/categorySpinner"
+        android:layout_alignBottom="@+id/categorySpinner"
+        android:layout_alignRight="@+id/pageTitle_All"
+        android:layout_alignEnd="@+id/pageTitle_All"/>
 
 </RelativeLayout>

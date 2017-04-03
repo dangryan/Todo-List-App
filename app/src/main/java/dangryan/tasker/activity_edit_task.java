@@ -10,10 +10,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import dangryan.tasker.db.TaskContract;
 import dangryan.tasker.db.TaskDbHelper;
+
+import static dangryan.tasker.R.id.editTitle;
+import static dangryan.tasker.R.id.taskNameLabel;
 
 
 public class activity_edit_task extends AppCompatActivity {
@@ -35,14 +39,11 @@ public class activity_edit_task extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
 
-
         titleEdit = (EditText) findViewById(R.id.editTitle);
         categorySpinner = (Spinner) findViewById(R.id.editCategory);
         dateEdit = (EditText) findViewById(R.id.editDate);
         addInfoEdit = (EditText) findViewById(R.id.editAddInfo);
-
         prioritySpin = (Spinner) findViewById(R.id.prioritySpinner);
-
 
         Bundle extras = getIntent().getExtras();
 
@@ -51,8 +52,6 @@ public class activity_edit_task extends AppCompatActivity {
         String taskDue = extras.getString("task due");
         String taskPriority = extras.getString("task priority");
         String taskNotes = extras.getString("task notes");
-
-
 
         if (taskCategory.equals("All")){
             taskCategoryPos = 0;
@@ -68,7 +67,6 @@ public class activity_edit_task extends AppCompatActivity {
         }
 
 
-
         if (taskPriority.equals("Low")){
             taskPriorityPos = 0;
         }
@@ -78,7 +76,6 @@ public class activity_edit_task extends AppCompatActivity {
         if (taskPriority.equals("High")){
             taskPriorityPos = 2;
         }
-
 
         titleEdit.setText(taskTitle);
         categorySpinner.setSelection(taskCategoryPos);
@@ -122,5 +119,23 @@ public class activity_edit_task extends AppCompatActivity {
         db.close();
         Toast toast = Toast.makeText(this, "Task updated!", Toast.LENGTH_LONG);
         toast.show();
+    }
+
+    public void deleteTaskFromEdit(View view) {
+        TextView taskTextView = (TextView)findViewById(editTitle);
+        String task = taskTextView.getText().toString();
+        SQLiteDatabase db = mHelper.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TaskContract.TaskEntry.COL_TASK_DONE, "True");
+
+
+        db.update(
+                TaskContract.TaskEntry.TABLE,
+                contentValues,
+                TaskContract.TaskEntry.COL_TASK_TITLE + "= ?",
+                new String[]{task});
+
+        db.close();
     }
 }

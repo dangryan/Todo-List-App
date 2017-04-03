@@ -21,7 +21,8 @@ import dangryan.tasker.db.TaskDbHelper;
 import static dangryan.tasker.R.id.taskNameLabel;
 
 public class activity_work extends AppCompatActivity {
-    private static final String TAG = "activity_work";
+    String category;
+    private String TAG;
     private TaskDbHelper mHelper;
     private ListView mTaskListView;
     private ArrayAdapter<String> mAdapter;
@@ -31,6 +32,9 @@ public class activity_work extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work);
 
+        Bundle extras = getIntent().getExtras();
+        category = extras.getString("category");
+
         mHelper = new TaskDbHelper(this);
         mTaskListView = (ListView) findViewById(R.id.task_todo_list);
         SQLiteDatabase db = mHelper.getReadableDatabase();
@@ -38,7 +42,7 @@ public class activity_work extends AppCompatActivity {
         Cursor cursor = db.query(
                 TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE},
-                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= 'Work'",
+                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= 'Work'" + " AND " + TaskContract.TaskEntry.COL_TASK_TITLE + " IS NOT NULL",
                 null,
                 null,
                 null,
@@ -77,7 +81,7 @@ public class activity_work extends AppCompatActivity {
         Cursor cursor = db.query(
                 TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE},
-                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= 'Work'",
+                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= 'Work'" + " AND " + TaskContract.TaskEntry.COL_TASK_TITLE + " IS NOT NULL",
                 null,
                 null,
                 null,
@@ -170,8 +174,6 @@ public class activity_work extends AppCompatActivity {
     public void switchPage(View view){
         Spinner categoryDropdown = (Spinner)findViewById(R.id.categorySpinner);
         String categoryChoice = categoryDropdown.getSelectedItem().toString();
-        TextView test = (TextView)findViewById(R.id.choiceView);
-        test.setText(categoryChoice);
 
         if (categoryChoice.equals("All")){
             Toast.makeText(getBaseContext(),"Current page selected", Toast.LENGTH_LONG);

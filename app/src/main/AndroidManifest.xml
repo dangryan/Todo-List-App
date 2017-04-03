@@ -2,12 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="dangryan.tasker">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera2" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -17,16 +28,14 @@
         </activity>
 
         <activity android:name=".activity_personal"/>
-
         <activity android:name=".activity_school"/>
-
         <activity android:name=".activity_work"/>
-
+        <activity android:name=".photo_example"/>
+        <activity android:name=".video_example"/>
         <activity android:name=".activity_new_task"/>
-
         <activity android:name="activity_new_category"/>
-
         <activity android:name=".activity_edit_task"/>
+        <activity android:name=".activity_completed"/>
 
 
     </application>

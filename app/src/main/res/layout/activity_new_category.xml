@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
         android:textColor="@android:color/background_dark"
-        android:layout_alignBaseline="@+id/editText"
-        android:layout_alignBottom="@+id/editText"
+        android:layout_alignBaseline="@+id/categoryEditText"
+        android:layout_alignBottom="@+id/categoryEditText"
         android:layout_toLeftOf="@+id/pageTitle"
         android:layout_toStartOf="@+id/pageTitle"
         android:layout_marginRight="29dp"
@@ -33,11 +33,11 @@
         android:inputType="text|textPersonName"
         android:ems="10"
         android:layout_marginTop="41dp"
-        android:id="@+id/editText"
+        android:id="@+id/categoryEditText"
         android:layout_below="@+id/pageTitle"
         android:layout_alignLeft="@+id/pageTitle"
         android:layout_alignStart="@+id/pageTitle"
-        android:hint="Name"/>
+        android:hint="Category Name"/>
 
     <Button
         android:text="Save"
@@ -45,6 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:id="@+id/buttonSave"
-        android:layout_below="@+id/editText"
-        android:layout_centerHorizontal="true"/>
+        android:layout_below="@+id/categoryEditText"
+        android:layout_centerHorizontal="true"
+        android:onClick="onNewCategorySaveButtonClick"/>
 </RelativeLayout>

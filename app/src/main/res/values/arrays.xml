@@ -5,9 +5,16 @@
         <item>School</item>
         <item>Work</item>
         <item>Personal</item>
+        <item>Completed</item>
+        <item>Photo Example</item>
+        <item>Video Example</item>
     </string-array>
 
-
+    <string-array name="categoryArrayShort">
+        <item>School</item>
+        <item>Work</item>
+        <item>Personal</item>
+    </string-array>
 
     <string-array name="priorityArray">
         <item>Low</item>
