@@ -220,24 +220,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, video_example.class);
             startActivity(intent);
         }
-
-        if (categoryChoice.equals("School")){
-            Intent intent = new Intent(MainActivity.this, activity_school.class);
-            intent.putExtra("category", "School");
-            startActivity(intent);
-        }
-        if (categoryChoice.equals("Work")){
-            Intent intent = new Intent(MainActivity.this, activity_work.class);
-            intent.putExtra("category", "Work");
-            startActivity(intent);
-        }
-        if (categoryChoice.equals("Personal")){
-            Intent intent = new Intent(MainActivity.this, activity_personal.class);
-            intent.putExtra("category", "Personal");
-            startActivity(intent);
-        }
         if (categoryChoice.equals("Completed")){
             Intent intent = new Intent(MainActivity.this, activity_completed.class);
+            startActivity(intent);
+        }
+        else{
+            Intent intent = new Intent(MainActivity.this, activity_category.class);
+            intent.putExtra("categoryName" , categoryChoice);
             startActivity(intent);
         }
 

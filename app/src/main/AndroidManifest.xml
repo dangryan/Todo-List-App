@@ -27,16 +27,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity_personal"/>
-        <activity android:name=".activity_school"/>
-        <activity android:name=".activity_work"/>
         <activity android:name=".photo_example"/>
         <activity android:name=".video_example"/>
         <activity android:name=".activity_new_task"/>
         <activity android:name="activity_new_category"/>
         <activity android:name=".activity_edit_task"/>
         <activity android:name=".activity_completed"/>
-
+        <activity android:name=".activity_category"/>
 
     </application>
 
