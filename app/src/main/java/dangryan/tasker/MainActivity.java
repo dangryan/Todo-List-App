@@ -17,20 +17,22 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import dangryan.tasker.db.CategoryContract;
+import dangryan.tasker.db.CategoryDbHelper;
 import dangryan.tasker.db.TaskContract;
 import dangryan.tasker.db.TaskDbHelper;
 
-import static dangryan.tasker.R.id.activity_school;
-import static dangryan.tasker.R.id.categorySpinner;
 import static dangryan.tasker.R.id.taskNameLabel;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private TaskDbHelper mHelper;
+    private CategoryDbHelper mHelper2;
     private ListView mTaskListView;
     private ArrayAdapter<String> mAdapter;
     private List<String> categorySpinnerArray = new ArrayList<>();
     Spinner categorySpin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +40,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all);
 
         mHelper = new TaskDbHelper(this);
+        mHelper2 = new CategoryDbHelper(this);
+
         mTaskListView = (ListView) findViewById(R.id.task_todo_list);
         SQLiteDatabase db = mHelper.getReadableDatabase();
 
         Cursor cursor = db.query(TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE},
-                TaskContract.TaskEntry.COL_TASK_DONE + "= 'False'" + " AND " + TaskContract.TaskEntry.COL_TASK_TITLE + " IS NOT NULL",
+                TaskContract.TaskEntry.COL_TASK_DONE + "= 'False'" + " AND " + TaskContract.TaskEntry.COL_TASK_TITLE + " IS NOT NULL ORDER BY due ASC",
                 null,
                 null,
                 null,
@@ -55,7 +59,12 @@ public class MainActivity extends AppCompatActivity {
         }
         cursor.close();
         updateUI();
-        //setCategorySpinner();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        updateUI();
     }
 
     public void setCategorySpinner(){
@@ -63,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
 
         SQLiteDatabase db = mHelper.getReadableDatabase();
 
-        Cursor cursor1 = db.query(TaskContract.TaskEntry.TABLE,
-                new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_CATEGORY},
+        Cursor cursor1 = db.query(TaskContract.CategoryEntry.TABLE,
+                new String[]{CategoryContract.CategoryEntry._ID, CategoryContract.CategoryEntry.COL_CATEGORY_NAME},
                 null,
                 null,
                 null,
@@ -72,16 +81,20 @@ public class MainActivity extends AppCompatActivity {
                 null);
 
         categorySpinnerArray.add("All");
+
         while (cursor1.moveToNext()){
-            int idx1 = cursor1.getColumnIndex(TaskContract.TaskEntry.COL_TASK_CATEGORY);
+            int idx1 = cursor1.getColumnIndex(TaskContract.CategoryEntry.COL_CATEGORY_NAME);
             categorySpinnerArray.add(cursor1.getString(idx1));
         }
-        categorySpinnerArray.add("Photo");
-        categorySpinnerArray.add("Video");
+        //categorySpinnerArray.add("Photo Example");
+        //categorySpinnerArray.add("Video Example");
+        //categorySpinnerArray.add("Maps Example");
+        categorySpinnerArray.add("Completed");
+
 
         db.close();
-        updateUI();
-        categorySpin = (Spinner)findViewById(R.id.categorySpinner);
+
+        categorySpin = (Spinner)findViewById(R.id.categorySelectSpinner);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, categorySpinnerArray);
@@ -91,14 +104,6 @@ public class MainActivity extends AppCompatActivity {
         categorySpin.setAdapter(adapter);
     }
 
-    @Override
-    protected void onResume(){
-        super.onResume();
-        updateUI();
-        //setCategorySpinner();
-    }
-
-    //Function to go to the "New Task" page
     public void onNewTaskButtonClick(View v) {
         Intent intent = new Intent(this, activity_new_task.class);
         startActivity(intent);
@@ -118,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = db.query(
                 TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry.COL_TASK_TITLE, TaskContract.TaskEntry.COL_TASK_DUE},
-                TaskContract.TaskEntry.COL_TASK_DONE + "= 'False'" + " AND " + TaskContract.TaskEntry.COL_TASK_TITLE + " IS NOT NULL",
+                TaskContract.TaskEntry.COL_TASK_DONE + "= 'False'" + " AND " + TaskContract.TaskEntry.COL_TASK_TITLE + " IS NOT NULL ORDER BY due ASC",
                 null,
                 null,
                 null,
@@ -148,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateUI(){
         updateTaskTitle();
-        //updateTaskDate();
+        setCategorySpinner();
     }
 
     public void deleteTask(View view) {
@@ -205,22 +210,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void switchPage(View view){
-        Spinner categoryDropdown = (Spinner)findViewById(R.id.categorySpinner);
+        Spinner categoryDropdown = (Spinner)findViewById(R.id.categorySelectSpinner);
         String categoryChoice = categoryDropdown.getSelectedItem().toString();
 
 
         if (categoryChoice.equals("All")){
             Toast.makeText(getBaseContext(),"Current page selected", Toast.LENGTH_LONG);
         }
-        if (categoryChoice.equals("Photo Example")){
+        else if (categoryChoice.equals("Photo Example")){
             Intent intent = new Intent(MainActivity.this, photo_example.class);
             startActivity(intent);
         }
-        if (categoryChoice.equals("Video Example")){
+        else if (categoryChoice.equals("Video Example")){
             Intent intent = new Intent(MainActivity.this, video_example.class);
             startActivity(intent);
         }
-        if (categoryChoice.equals("Completed")){
+        else if (categoryChoice.equals("Maps Example")){
+            Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+            startActivity(intent);
+        }
+        else if (categoryChoice.equals("Completed")){
             Intent intent = new Intent(MainActivity.this, activity_completed.class);
             startActivity(intent);
         }

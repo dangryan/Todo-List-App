@@ -16,6 +16,11 @@ public class TaskContract {
         public static final String COL_TASK_PRIORITY = "priority";
         public static final String COL_TASK_NOTES = "notes";
         public static final String COL_TASK_DONE = "done";
+    }
 
+    public class CategoryEntry implements BaseColumns {
+        public static final String TABLE = "category";
+
+        public static final String COL_CATEGORY_NAME = "categoryName";
     }
 }

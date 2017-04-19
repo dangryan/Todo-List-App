@@ -9,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="dangryan.tasker.MainActivity">
+    tools:context="dangryan.tasker.MainActivity"
+    android:background="@android:color/white">
 
     <ListView
         android:id="@+id/task_todo_list"
@@ -18,7 +19,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="54dp"
-        android:layout_height="320dp"/>
+        android:layout_height="320dp"
+        android:background="@drawable/customshape"/>
 
     <TextView
         android:text="All Tasks:"
@@ -31,31 +33,9 @@
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"/>
 
-    <Button
-        android:text="Switch Pages"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/categoryButton"
-        android:onClick="switchPage"
-        android:layout_marginBottom="14dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"/>
-
-    <Button
-        android:text="New Task"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/newTaskButton"
-        android:onClick="onNewTaskButtonClick"
-        android:layout_alignBaseline="@+id/categoryButton"
-        android:layout_alignBottom="@+id/categoryButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
     <Spinner
         android:layout_height="wrap_content"
-        android:id="@+id/categorySpinner"
+        android:id="@+id/categorySelectSpinner"
         android:layout_width="wrap_content"
         android:entries="@array/categoryArray"
         android:layout_marginBottom="14dp"
@@ -65,15 +45,60 @@
         android:layout_alignLeft="@+id/categoryButton"
         android:layout_alignStart="@+id/categoryButton"/>
 
+    <Button
+        android:text="New Task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newTaskButton"
+        android:onClick="onNewTaskButtonClick"
+        android:textSize="10sp"
+        android:textColor="@android:color/background_light"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_alignBaseline="@+id/newCategoryButton"
+        android:layout_alignBottom="@+id/newCategoryButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorAccent"/>
+
+    <Button
+        android:text="Switch Pages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/categoryButton"
+        android:onClick="switchPage"
+        android:layout_marginBottom="15dp"
+        android:textSize="10sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@android:color/background_light"
+        android:background="@color/colorAccent"/>
+
+    <Button
+        android:text="New Category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newCategoryButton"
+        android:onClick="onNewCategoryButtonClick"
+        android:textSize="10sp"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@android:color/background_light"
+        android:layout_alignBaseline="@+id/categoryButton"
+        android:layout_alignBottom="@+id/categoryButton"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorAccent"/>
+
     <TextView
         android:text="Pages:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView4"
         android:textColor="@android:color/background_dark"
-        android:layout_alignBaseline="@+id/categorySpinner"
-        android:layout_alignBottom="@+id/categorySpinner"
-        android:layout_alignRight="@+id/pageTitle_All"
-        android:layout_alignEnd="@+id/pageTitle_All"/>
+        tools:text="Select a page:"
+        android:layout_alignBaseline="@+id/categorySelectSpinner"
+        android:layout_alignBottom="@+id/categorySelectSpinner"
+        android:layout_toLeftOf="@+id/categorySelectSpinner"
+        android:layout_toStartOf="@+id/categorySelectSpinner"/>
 
 </RelativeLayout>

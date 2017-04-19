@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import dangryan.tasker.db.CategoryContract;
+import dangryan.tasker.db.CategoryDbHelper;
 import dangryan.tasker.db.TaskContract;
 import dangryan.tasker.db.TaskDbHelper;
 
@@ -22,31 +24,23 @@ public class activity_new_category extends AppCompatActivity {
     EditText categoryEdit;
     private TaskDbHelper mHelper;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_category);
-
         categoryEdit = (EditText)findViewById(R.id.categoryEditText);
     }
 
     public void onNewCategorySaveButtonClick(View view) {
-        String newCategory = categoryEdit.getText().toString();
         mHelper = new TaskDbHelper(this);
+        String newCategory = categoryEdit.getText().toString();
+
         SQLiteDatabase db = mHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(TaskContract.TaskEntry.COL_TASK_TITLE, "null");
-        values.put(TaskContract.TaskEntry.COL_TASK_CATEGORY, newCategory);
-        values.put(TaskContract.TaskEntry.COL_TASK_DUE, "null");
-        values.put(TaskContract.TaskEntry.COL_TASK_NOTES, "null");
-        values.put(TaskContract.TaskEntry.COL_TASK_PRIORITY, "null");
-        values.put(TaskContract.TaskEntry.COL_TASK_DONE, "null");
+        values.put(TaskContract.CategoryEntry.COL_CATEGORY_NAME, newCategory);
 
-
-        db.insertWithOnConflict(TaskContract.TaskEntry.TABLE,
+        db.insertWithOnConflict(TaskContract.CategoryEntry.TABLE,
                 null,
                 values,
                 SQLiteDatabase.CONFLICT_REPLACE);
@@ -54,36 +48,6 @@ public class activity_new_category extends AppCompatActivity {
         db.close();
         Toast toast = Toast.makeText(this, "Category Added!", Toast.LENGTH_LONG);
         toast.show();
+        finish();
     }
 }
-
-
-
-    /*public void setCategorySpinner(){
-        categorySpinnerArray.clear();
-
-        SQLiteDatabase db = mHelper.getReadableDatabase();
-
-        Cursor cursor1 = db.query(TaskContract.TaskEntry.TABLE,
-                new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_CATEGORY},
-                TaskContract.TaskEntry.COL_TASK_DONE + "= 'False'",
-                null,
-                null,
-                null,
-                null);
-
-        while (cursor1.moveToNext()){
-            int idx1 = cursor1.getColumnIndex(TaskContract.TaskEntry.COL_TASK_CATEGORY);
-            categorySpinnerArray.add(cursor1.getString(idx1));
-        }
-        db.close();
-        updateUI();
-        categorySpin = (Spinner)findViewById(R.id.categorySpinner);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, categorySpinnerArray);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        categorySpin.setAdapter(adapter);
-    }*/

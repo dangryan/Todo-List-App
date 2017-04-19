@@ -21,13 +21,18 @@ public class TaskDbHelper extends SQLiteOpenHelper {
                 TaskContract.TaskEntry.COL_TASK_NOTES + " TEXT NOT NULL," +
                 TaskContract.TaskEntry.COL_TASK_DONE + " TEXT NOT NULL)";
 
+        String createCategoryTable = "CREATE TABLE category ( " +
+                TaskContract.CategoryEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                TaskContract.CategoryEntry.COL_CATEGORY_NAME + " TEXT NOT NULL)";
 
                 db.execSQL(createTable);
+                db.execSQL(createCategoryTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TaskContract.TaskEntry.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + TaskContract.CategoryEntry.TABLE);
         onCreate(db);
     }
 }

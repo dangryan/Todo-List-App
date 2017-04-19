@@ -43,9 +43,12 @@
         android:text="Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="23dp"
         android:id="@+id/buttonSave"
+        android:onClick="onNewCategorySaveButtonClick"
         android:layout_below="@+id/categoryEditText"
         android:layout_centerHorizontal="true"
-        android:onClick="onNewCategorySaveButtonClick"/>
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@android:color/background_light"
+        android:background="@color/colorAccent"/>
 </RelativeLayout>

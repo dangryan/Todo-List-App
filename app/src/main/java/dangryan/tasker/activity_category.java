@@ -48,7 +48,7 @@ public class activity_category extends AppCompatActivity {
         Cursor cursor = db.query(
                 TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE},
-                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= '"+ categoryName + "' AND " + TaskContract.TaskEntry.COL_TASK_DONE + "= 'False'" + " AND " + TaskContract.TaskEntry.COL_TASK_TITLE + " IS NOT NULL",
+                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= '"+ categoryName + "' AND " + TaskContract.TaskEntry.COL_TASK_DONE + "= 'False'" + " AND " + TaskContract.TaskEntry.COL_TASK_TITLE + " IS NOT NULL ORDER BY due ASC",
                 null,
                 null,
                 null,
@@ -89,7 +89,8 @@ public class activity_category extends AppCompatActivity {
         Cursor cursor = db.query(
                 TaskContract.TaskEntry.TABLE,
                 new String[]{TaskContract.TaskEntry._ID, TaskContract.TaskEntry.COL_TASK_TITLE},
-                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= '"+ categoryName + "' AND " + TaskContract.TaskEntry.COL_TASK_DONE + "= 'False'" + " AND " + TaskContract.TaskEntry.COL_TASK_TITLE + " IS NOT NULL",                null,
+                TaskContract.TaskEntry.COL_TASK_CATEGORY + "= '"+ categoryName + "' AND " + TaskContract.TaskEntry.COL_TASK_DONE + "= 'False'" + " AND " + TaskContract.TaskEntry.COL_TASK_TITLE + " IS NOT NULL ORDER BY due ASC",
+                null,
                 null,
                 null,
                 null);

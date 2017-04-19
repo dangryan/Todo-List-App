@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -25,85 +26,51 @@
         android:textColor="@android:color/background_dark"/>
 
     <TextView
-        android:text="Title: *"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="22dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginTop="30dp"
-        android:id="@+id/textTitle"
-        android:layout_below="@+id/textView2"
-        android:layout_toLeftOf="@+id/textView2"
-        android:layout_toStartOf="@+id/textView2"
-        android:textColor="@android:color/background_dark"/>
-
-    <TextView
-        android:text="Category: *"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTitle"
-        android:layout_alignLeft="@+id/textTitle"
-        android:layout_alignStart="@+id/textTitle"
-        android:layout_marginTop="17dp"
-        android:id="@+id/textCategory"
-        android:textColor="@android:color/background_dark"/>
-
-    <TextView
-        android:text="Finish by: *"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editCategory"
-        android:layout_alignLeft="@+id/textCategory"
-        android:layout_alignStart="@+id/textCategory"
-        android:layout_marginTop="21dp"
-        android:id="@+id/textFinishBy"
-        android:textColor="@android:color/background_dark"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/editDate"
-        android:textSize="14sp"
-        android:layout_alignBaseline="@+id/textFinishBy"
-        android:layout_alignBottom="@+id/textFinishBy"
-        android:layout_alignLeft="@+id/editCategory"
-        android:layout_alignStart="@+id/editCategory"
-        android:hint="Date"/>
-
-    <TextView
         android:text="Priority:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editDate"
-        android:layout_alignLeft="@+id/textFinishBy"
-        android:layout_alignStart="@+id/textFinishBy"
+        android:layout_below="@+id/editDateButton"
         android:layout_marginTop="18dp"
         android:id="@+id/textPriority"
-        android:textColor="@android:color/background_dark"/>
+        android:textColor="@android:color/background_dark"
+        android:layout_alignLeft="@+id/textAddInfo"
+        android:layout_alignStart="@+id/textAddInfo"/>
 
     <TextView
         android:text="Additional Info:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/prioritySpinner"
-        android:layout_alignLeft="@+id/textPriority"
-        android:layout_alignStart="@+id/textPriority"
         android:layout_marginTop="22dp"
         android:id="@+id/textAddInfo"
-        android:textColor="@android:color/background_dark"/>
+        android:textColor="@android:color/background_dark"
+        android:layout_alignLeft="@+id/editAddInfo"
+        android:layout_alignStart="@+id/editAddInfo"/>
 
     <EditText
-        android:inputType="text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
         android:ems="10"
-        android:layout_marginTop="15dp"
-        android:id="@+id/editAddInfo"
-        android:hint="Additional info"
-        android:layout_height="100dp"
-        android:layout_width="300dp"
-        android:layout_below="@+id/textAddInfo"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignTop="@+id/editDateButton"
+        android:id="@+id/dateEditText"
+        android:layout_toLeftOf="@+id/editDateButton"
+        android:layout_alignLeft="@+id/prioritySpinner"
+        android:layout_alignStart="@+id/prioritySpinner"/>
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editDateButton"
+        android:textSize="14sp"
+        android:layout_alignBaseline="@+id/textFinishBy"
+        android:layout_alignBottom="@+id/textFinishBy"
+        android:layout_alignRight="@+id/categorySelectSpinner"
+        android:layout_alignEnd="@+id/categorySelectSpinner"
+        android:background="@android:drawable/ic_menu_my_calendar"
+        android:backgroundTint="@color/colorAccent"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -116,22 +83,23 @@
         android:layout_alignBaseline="@+id/textTitle"
         android:layout_alignBottom="@+id/textTitle"
         android:layout_alignRight="@+id/editAddInfo"
-        android:layout_alignEnd="@+id/editAddInfo"/>
+        android:layout_alignEnd="@+id/editAddInfo"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"/>
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:id="@+id/editCategory"
+        android:id="@+id/categorySelectSpinner"
         android:textSize="14sp"
         android:hint="Category"
         android:inputType="text"
         android:layout_alignTop="@+id/textCategory"
         android:layout_alignRight="@+id/editTitle"
         android:layout_alignEnd="@+id/editTitle"
-        android:layout_alignLeft="@+id/editTitle"
-        android:layout_alignStart="@+id/editTitle"
-        android:entries="@array/categoryArray"/>
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"/>
 
     <Spinner
         android:layout_width="wrap_content"
@@ -140,21 +108,11 @@
         android:numStars="3"
         android:stepSize="1"
         android:layout_alignBottom="@+id/textPriority"
-        android:layout_alignLeft="@+id/editDate"
-        android:layout_alignStart="@+id/editDate"
-        android:layout_alignRight="@+id/editDate"
-        android:layout_alignEnd="@+id/editDate"
-        android:entries="@array/priorityArray"/>
-
-    <Button
-        android:text="Save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonSave"
-        android:onClick="onSaveButtonClickEdit"
-        android:layout_below="@+id/editAddInfo"
-        android:layout_toLeftOf="@+id/textView2"
-        android:layout_toStartOf="@+id/textView2"/>
+        android:layout_alignRight="@+id/editDateButton"
+        android:layout_alignEnd="@+id/editDateButton"
+        android:entries="@array/priorityArray"
+        android:layout_toRightOf="@+id/buttonSave"
+        android:layout_toEndOf="@+id/buttonSave"/>
 
     <CheckBox
         android:text="Mark as Completed"
@@ -167,6 +125,63 @@
         android:layout_alignBottom="@+id/buttonSave"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="deleteTaskFromEdit"/>
+        android:onClick="deleteTaskFromEdit"
+        app:buttonTint="@color/colorAccent"/>
+
+    <TextView
+        android:text="Finish by: *"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:id="@+id/textFinishBy"
+        android:textColor="@android:color/background_dark"
+        android:layout_below="@+id/categorySelectSpinner"
+        android:layout_alignLeft="@+id/textPriority"
+        android:layout_alignStart="@+id/textPriority"/>
+
+    <TextView
+        android:text="Category: *"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/textCategory"
+        android:textColor="@android:color/background_dark"
+        android:layout_below="@+id/editTitle"
+        android:layout_alignLeft="@+id/textFinishBy"
+        android:layout_alignStart="@+id/textFinishBy"/>
+
+    <TextView
+        android:text="Title: *"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:id="@+id/textTitle"
+        android:textColor="@android:color/background_dark"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textCategory"
+        android:layout_alignStart="@+id/textCategory"/>
+
+    <EditText
+        android:inputType="text"
+        android:ems="10"
+        android:id="@+id/editAddInfo"
+        android:hint="Additional info"
+        android:layout_width="300dp"
+        android:layout_below="@+id/textAddInfo"
+        android:layout_centerHorizontal="true"
+        android:layout_height="45dp"/>
+
+    <Button
+        android:text="Save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSave"
+        android:onClick="onSaveButtonClickEdit"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@android:color/background_light"
+        android:layout_below="@+id/editAddInfo"
+        android:layout_alignRight="@+id/textAddInfo"
+        android:layout_alignEnd="@+id/textAddInfo"
+        android:background="@color/colorAccent"/>
 
 </RelativeLayout>
