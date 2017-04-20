@@ -164,6 +164,7 @@ public class activity_category extends AppCompatActivity {
         String taskNotes = cursor2.getString(cursor2.getColumnIndex("notes"));
 
         db.close();
+        cursor2.close();
 
         Intent intent = new Intent(this, activity_edit_task.class);
 

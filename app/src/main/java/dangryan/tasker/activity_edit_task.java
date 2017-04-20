@@ -43,6 +43,7 @@ public class activity_edit_task extends AppCompatActivity {
     int taskCategoryPos;
     int taskPriorityPos;
     Button pickDate;
+    String tid;
     Calendar mCalendar = Calendar.getInstance();
     String myFormat = "MM/dd/yy";
     SimpleDateFormat mDateFormat = new SimpleDateFormat(myFormat);
@@ -73,6 +74,7 @@ public class activity_edit_task extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
 
+        tid = extras.getString("tid");
         String taskTitle = extras.getString("task title");
         String taskCategory = extras.getString("task category");
         String taskDue = extras.getString("task due");
@@ -151,6 +153,7 @@ public class activity_edit_task extends AppCompatActivity {
         }
 
         db.close();
+        cursor1.close();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, categorySpinnerArray);
@@ -204,8 +207,7 @@ public class activity_edit_task extends AppCompatActivity {
     }
 
     public void deleteTaskFromEdit(View view) {
-        TextView taskTextView = (TextView)findViewById(editTitle);
-        String task = taskTextView.getText().toString();
+        String task = tid;
         SQLiteDatabase db = mHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -215,7 +217,7 @@ public class activity_edit_task extends AppCompatActivity {
         db.update(
                 TaskContract.TaskEntry.TABLE,
                 contentValues,
-                TaskContract.TaskEntry.COL_TASK_TITLE + "= ?",
+                TaskContract.TaskEntry._ID + "= ?",
                 new String[]{task});
 
         db.close();

@@ -12,6 +12,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsManager;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -123,6 +125,7 @@ public class activity_new_task extends AppCompatActivity {
         }
 
         db.close();
+        cursor1.close();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, categorySpinnerArray);
@@ -138,7 +141,13 @@ public class activity_new_task extends AppCompatActivity {
 
         String taskAddInfo = String.valueOf(addInfoEdit.getText());
         String taskDate = String.valueOf(dateEdit.getText());
-        String taskCategory = categorySpin.getSelectedItem().toString();
+
+        String taskCategory = "";
+
+        if (categorySpin.getSelectedItem() != null) {
+           taskCategory = categorySpin.getSelectedItem().toString();
+        }
+
         String taskRating = prioritySpin.getSelectedItem().toString();
         final String taskTitle = String.valueOf(titleEdit.getText());
 
@@ -160,23 +169,6 @@ public class activity_new_task extends AppCompatActivity {
                     SQLiteDatabase.CONFLICT_REPLACE);
 
             db.close();
-
-
-            //Reminder Creation
-            mCalendar.set(Calendar.HOUR_OF_DAY, 18);
-            mCalendar.set(Calendar.MINUTE, 45);
-            mCalendar.set(Calendar.SECOND, 0);
-
-            Intent intent = new Intent(this, MyBroadcastReceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 001, intent, 0);
-            AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String formattedDate = df.format(mCalendar.getTimeInMillis());
-
-            Log.d("debug", "onSaveButtonClick: " + formattedDate);
-            am.set(AlarmManager.RTC_WAKEUP, mCalendar.getTimeInMillis(), pendingIntent);
-
 
             //toast creation
             Toast toast = Toast.makeText(this, "Task Added!", Toast.LENGTH_LONG);

@@ -88,11 +88,13 @@ public class MainActivity extends AppCompatActivity {
         }
         //categorySpinnerArray.add("Photo Example");
         //categorySpinnerArray.add("Video Example");
-        //categorySpinnerArray.add("Maps Example");
+        categorySpinnerArray.add("Maps Example");
+
         categorySpinnerArray.add("Completed");
 
 
         db.close();
+        cursor1.close();
 
         categorySpin = (Spinner)findViewById(R.id.categorySelectSpinner);
 
@@ -182,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = mHelper.getWritableDatabase();
 
         String table = TaskContract.TaskEntry.TABLE;
-        String[] columns = new String[] { "title", "due", "category", "priority", "notes" };
+        String[] columns = new String[] {TaskContract.TaskEntry._ID, "title", "due", "category", "priority", "notes" };
         String selection = TaskContract.TaskEntry.COL_TASK_TITLE+ "= '" + taskName + "'";
 
 
@@ -190,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
         cursor2.moveToFirst();
 
+        String tid = cursor2.getString(cursor2.getColumnIndex(TaskContract.TaskEntry._ID));
         String taskTitle = cursor2.getString(cursor2.getColumnIndex("title"));
         String taskDue = cursor2.getString(cursor2.getColumnIndex("due"));
         String taskCategory = cursor2.getString(cursor2.getColumnIndex("category"));
@@ -197,9 +200,11 @@ public class MainActivity extends AppCompatActivity {
         String taskNotes = cursor2.getString(cursor2.getColumnIndex("notes"));
 
         db.close();
+        cursor2.close();
 
         Intent intent = new Intent(MainActivity.this, activity_edit_task.class);
 
+        intent.putExtra("tid", tid);
         intent.putExtra("task title", taskTitle);
         intent.putExtra("task due", taskDue);
         intent.putExtra("task category", taskCategory);
@@ -215,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (categoryChoice.equals("All")){
-            Toast.makeText(getBaseContext(),"Current page selected", Toast.LENGTH_LONG);
+            Toast.makeText(getBaseContext(),"Current page selected", Toast.LENGTH_LONG).show();
         }
         else if (categoryChoice.equals("Photo Example")){
             Intent intent = new Intent(MainActivity.this, photo_example.class);
