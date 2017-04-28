@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //categorySpinnerArray.add("Photo Example");
         //categorySpinnerArray.add("Video Example");
-        categorySpinnerArray.add("Maps Example");
+        //categorySpinnerArray.add("Maps Example");
 
         categorySpinnerArray.add("Completed");
 
@@ -156,25 +156,6 @@ public class MainActivity extends AppCompatActivity {
     private void updateUI(){
         updateTaskTitle();
         setCategorySpinner();
-    }
-
-    public void deleteTask(View view) {
-        View parent = (View) view.getParent();
-        TextView taskTextView = (TextView) parent.findViewById(taskNameLabel);
-        String task = taskTextView.getText().toString();
-        SQLiteDatabase db = mHelper.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(TaskContract.TaskEntry.COL_TASK_DONE, "True");
-
-
-        db.update(
-                TaskContract.TaskEntry.TABLE,
-                contentValues,
-                TaskContract.TaskEntry.COL_TASK_TITLE + "= ?",
-                new String[]{task});
-
-        db.close();
-        updateUI();
     }
 
     public void editTask(View view) {

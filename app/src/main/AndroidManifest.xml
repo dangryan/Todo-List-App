@@ -59,6 +59,9 @@
         <activity android:name=".activity_category"
                   android:screenOrientation="portrait"
             />
+        <activity android:name=".activity_email"
+                  android:screenOrientation="portrait"
+            />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

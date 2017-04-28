@@ -174,7 +174,56 @@ public class activity_new_task extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "Task Added!", Toast.LENGTH_LONG);
             toast.show();
 
-            finish();
+            //finish();
+        }
+    }
+
+    public void onSaveAndEmailButtonClick(View view) {
+        SQLiteDatabase db = mHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        String taskAddInfo = String.valueOf(addInfoEdit.getText());
+        String taskDate = String.valueOf(dateEdit.getText());
+
+        String taskCategory = "";
+
+        if (categorySpin.getSelectedItem() != null) {
+            taskCategory = categorySpin.getSelectedItem().toString();
+        }
+
+        String taskRating = prioritySpin.getSelectedItem().toString();
+        final String taskTitle = String.valueOf(titleEdit.getText());
+
+
+        if (taskTitle.matches("") || taskCategory.matches("")) {
+            Toast.makeText(this, "Please enter the required fields.", Toast.LENGTH_LONG).show();
+        } else {
+            values.put(TaskContract.TaskEntry.COL_TASK_TITLE, taskTitle);
+            values.put(TaskContract.TaskEntry.COL_TASK_CATEGORY, taskCategory);
+            values.put(TaskContract.TaskEntry.COL_TASK_DUE, dateChosen);
+            values.put(TaskContract.TaskEntry.COL_TASK_NOTES, taskAddInfo);
+            values.put(TaskContract.TaskEntry.COL_TASK_PRIORITY, taskRating);
+            values.put(TaskContract.TaskEntry.COL_TASK_DONE, "False");
+
+
+            db.insertWithOnConflict(TaskContract.TaskEntry.TABLE,
+                    null,
+                    values,
+                    SQLiteDatabase.CONFLICT_REPLACE);
+
+            db.close();
+
+            //toast creation
+            Toast toast = Toast.makeText(this, "Task Added!", Toast.LENGTH_LONG);
+            toast.show();
+
+            Intent emailIntent = new Intent(this,activity_email.class);
+            emailIntent.putExtra("date",dateChosen);
+            emailIntent.putExtra("title", taskTitle);
+            emailIntent.putExtra("body", taskAddInfo);
+            startActivity(emailIntent);
+
+            //finish();
         }
     }
 }
